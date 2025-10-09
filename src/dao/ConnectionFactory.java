@@ -6,18 +6,15 @@ import java.sql.SQLException;
 
 public class ConnectionFactory {
 
-    private static final String URL = "jdbc:mysql://localhost:3306/delivery";
+    private static final String URL =
+        "jdbc:mysql://localhost:3306/ifood?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USER = "root";
-    private static final String PASS = "123456";
+    private static final String PASS = "12345678";
 
     public static Connection getConnection() {
         try {
-            // Registrar o driver (opcional em Java 8+, mas seguro)
             Class.forName("com.mysql.cj.jdbc.Driver");
-
-            // Conectar
             return DriverManager.getConnection(URL, USER, PASS);
-
         } catch (ClassNotFoundException e) {
             throw new RuntimeException("Driver JDBC não encontrado: " + e.getMessage());
         } catch (SQLException e) {
