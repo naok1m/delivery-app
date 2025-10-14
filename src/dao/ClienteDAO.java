@@ -9,13 +9,12 @@ import model.Cliente;
 public class ClienteDAO {
 	// CRIAR CLIENTE
 	public void inserirCliente (Cliente cliente) {
-		String sql =  "INSERT INTO cliente (nome, email, telefone, endereco) VALUES (?, ?, ?, ?)";
+		String sql =  "INSERT INTO cliente (nome, telefone, endereço) VALUES (?, ?, ?)";
 		try (Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement ptsm = conn.prepareStatement(sql)){
 			ptsm.setString(1, cliente.getNome());
-			ptsm.setString(2, cliente.getEmail());
-			ptsm.setString(3, cliente.getTelefone());
-			ptsm.setString(4, cliente.getEndereco());
+			ptsm.setString(2, cliente.getTelefone());
+			ptsm.setString(3, cliente.getEndereço());
 			
 			ptsm.execute();
 			} catch (SQLException e) {

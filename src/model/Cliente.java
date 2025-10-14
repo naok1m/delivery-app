@@ -3,20 +3,14 @@ package model;
 public class Cliente {
 	public int id;
 	public String nome;
-	public String email;
-	public String senha;
-	public String endereco;
+	public String endereço;
 	public String telefone;
 	
 	
-	public Cliente(int id, String nome, String email, String senha) {
-		this.id = id;
+	public Cliente(String nome, String endereço, String telefone) {
 		this.nome = nome;
-		this.email = email;
-		this.senha = senha;
-	}
-	public Cliente(String nome, String email, String senha) {
-		this(0, nome, email, senha);
+		this.endereço = endereço;
+		this.telefone = telefone;
 	}
 	public int getId() {
 		return id;
@@ -30,23 +24,11 @@ public class Cliente {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public String getEmail() {
-		return email;
+	public String getEndereço() {
+		return endereço;
 	}
-	public void setEmail(String email) {
-		this.email = email;
-	}
-	public String getSenha() {
-		return senha;
-	}
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}
-	public String getEndereco() {
-		return endereco;
-	}
-	public void setEndereco(String endereco) {
-		this.endereco = endereco;
+	public void setEndereço(String endereço) {
+		this.endereço = endereço;
 	}
 	public String getTelefone() {
 		return telefone;
