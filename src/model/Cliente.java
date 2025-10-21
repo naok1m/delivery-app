@@ -1,55 +1,47 @@
 package model;
 
 public class Cliente {
-	public int id;
-	public String nome;
-	public String endereço;
-	public String telefone;
-	public String email;
+	public int ID;
+	public String Nome;
+	public String Endereço;
+	public String Telefone;
 	
 	
-	public Cliente(String nome, String endereço, String telefone, String email) {
-		this.nome = nome;
-		this.endereço = endereço;
-		this.telefone = telefone;
-		this.email = email;
+	public Cliente(String nome, String endereço, String telefone) {
+		this.Nome = nome;
+		this.Endereço = endereço;
+		this.Telefone = telefone;
+
 	}
-	public Cliente(int id, String nome, String endereço, String telefone, String email) {
-		this.id = id;
-		this.nome = nome;
-		this.endereço = endereço;
-		this.telefone = telefone;
-		this.email = email;
+	public Cliente(int id, String nome, String endereço, String telefone) {
+		this.ID = id;
+		this.Nome = nome;
+		this.Endereço = endereço;
+		this.Telefone = telefone;
 	}
-	public int getId() {
-		return id;
+	public int getID() {
+		return ID;
 	}
-	public void setId(int id) {
-		this.id = id;
+	public void setID(int id) {
+		this.ID = id;
 	}
 	public String getNome() {
-		return nome;
+		return Nome;
 	}
 	public void setNome(String nome) {
-		this.nome = nome;
+		this.Nome = nome;
 	}
 	public String getEndereço() {
-		return endereço;
+		return Endereço;
 	}
 	public void setEndereço(String endereço) {
-		this.endereço = endereço;
+		this.Endereço = endereço;
 	}
 	public String getTelefone() {
-		return telefone;
+		return Telefone;
 	}
 	public void setTelefone(String telefone) {
-		this.telefone = telefone;
-	}
-	public String getEmail() {
-		return email;
-	}
-	public void setEmail(String email) {
-		this.email = email;
+		this.Telefone = telefone;
 	}
 	
 }

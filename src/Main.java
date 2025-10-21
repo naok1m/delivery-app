@@ -1,22 +1,36 @@
 import dao.ClienteDAO;
+import dao.ItemPedidoDAO;
+import dao.PedidoDAO;
+import dao.RestauranteDAO;
 import model.Cliente;
+import model.ItemPedido;
+import model.Pedido;
+import model.Restaurante;
 
 public class Main {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		ClienteDAO dao = new ClienteDAO();
-		Cliente novo = new Cliente( "Eduardo", "rua ali","05585923457384", "edu@email.com");
-
-		Cliente novo2 = new Cliente( "Maria", "rua ali","49154985", "mariadu@email.com");
+		ClienteDAO daoClient = new ClienteDAO();
+		Cliente novoClient = new Cliente("joao", "sfasf","fsafafaw");
+		daoClient.inserirCliente(novoClient);
 		
-		dao.inserirCliente(novo);
-		dao.inserirCliente(novo2);
-		Cliente buscado = dao.buscarPorId(3);
-		Cliente buscado2 = dao.buscarPorId(7);
-		System.out.println("Cliente buscado: + " + buscado.getNome());
+		RestauranteDAO daoRest = new RestauranteDAO();
+		Restaurante novoRest = new Restaurante("chicobem", "256364", "massas");
+		daoRest.inserirRestaurante(novoRest);
+		
+		PedidoDAO daoPedido = new PedidoDAO();
+		Pedido novoPedido = new Pedido(novoClient, novoRest, "jsiafja", "Em Preparo" );
+		daoPedido.inserirPedido(novoPedido);
+		
+		
+		ItemPedidoDAO dao = new ItemPedidoDAO();
+		
+		ItemPedido novo = new ItemPedido(novoPedido,null,3,23.45);
 
-		System.out.println("Cliente buscado: + " + buscado2.getNome());
+		
+		dao.inserirItemPedido(novo);
+
 	}
 
 }

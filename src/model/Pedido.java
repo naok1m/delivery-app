@@ -1,48 +1,57 @@
 package model;
 
 public class Pedido {
-	public int id;
-	public Cliente cliente;
-	public String dataHora;
-	public Restaurante restaurante;
-	public String status;
-	public Pedido(int id, Cliente cliente, String dataHora, Restaurante restaurante, String status) {
-		super();
-		this.id = id;
-		this.cliente = cliente;
-		this.dataHora = dataHora;
-		this.restaurante = restaurante;
-		this.status = status;
+	public int ID;
+	public Cliente Cliente;
+	public Restaurante Restaurante;
+	public String DataHora;
+	public String Stats;
+	
+	
+	public Pedido(int id, Cliente cliente, Restaurante restaurante, String dataHora, String stats) {
+		this.ID = id;
+		this.Cliente = cliente;
+		this.Restaurante = restaurante;
+		this.DataHora = dataHora;
+		this.Stats = stats;
 	}
-	public int getId() {
-		return id;
+	public Pedido(Cliente cliente, Restaurante restaurante, String dataHora, String stats) {
+		this.Cliente = cliente;
+		this.Restaurante = restaurante;
+		this.DataHora = dataHora;
+		this.Stats = stats;
 	}
-	public void setId(int id) {
-		this.id = id;
+	
+	
+	public int getID() {
+		return ID;
+	}
+	public void setID(int id) {
+		this.ID = id;
 	}
 	public Cliente getCliente() {
-		return cliente;
+		return Cliente;
 	}
 	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
-	public String getDataHora() {
-		return dataHora;
-	}
-	public void setDataHora(String dataHora) {
-		this.dataHora = dataHora;
+		this.Cliente = cliente;
 	}
 	public Restaurante getRestaurante() {
-		return restaurante;
+		return Restaurante;
 	}
 	public void setRestaurante(Restaurante restaurante) {
-		this.restaurante = restaurante;
+		this.Restaurante = restaurante;
 	}
-	public String getStatus() {
-		return status;
+	public String getDataHora() {
+		return DataHora;
 	}
-	public void setStatus(String status) {
-		this.status = status;
+	public void setDataHora(String dataHora) {
+		this.DataHora = dataHora;
+	}
+	public String getStats() {
+		return Stats;
+	}
+	public void setStats(String stats) {
+		this.Stats = stats;
 	}
 	
 	
