@@ -2,16 +2,18 @@ package model;
 
 public class ItemPedido {
 	public int ID;
+	private Produto produto;
     public Pedido Pedido;
     public String Descrição;
     public int Quantidade;
     public double Valor;
 
-    public ItemPedido(Pedido pedido, String descrição, int quantidade, double valor) {
+    public ItemPedido(Pedido pedido, String descrição, int quantidade, double valor, Produto produto) {
         this.Pedido = pedido;
         this.Descrição = (descrição != null)? descrição: "Sem descrição";
         this.Quantidade = quantidade;
         this.Valor = valor;
+        this.produto = produto;
     }
 
     public ItemPedido(int id, Pedido pedido, String descrição, int quantidade, double valor) {
@@ -22,6 +24,17 @@ public class ItemPedido {
         this.Valor = valor;
     }
 
+    
+    
+    public Produto getProduto() {
+    	return produto;
+    }
+    
+    public void setProduto(Produto produto) {
+    	this.produto = produto;
+    }
+    
+    
     public int getID() {
     	return ID;
     }
@@ -52,5 +65,9 @@ public class ItemPedido {
     public void setValor(double valor){
     	this.Valor = valor;
     }
+
+	public double getSubtotal() {
+		return Quantidade * Valor;
+	}
 
 }

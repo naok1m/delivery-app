@@ -12,24 +12,12 @@ public class Main {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		ClienteDAO daoClient = new ClienteDAO();
-		Cliente novoClient = new Cliente("joao", "sfasf","fsafafaw");
+		Cliente novoClient = new Cliente("joao", "5415154","rua j");
 		daoClient.inserirCliente(novoClient);
 		
 		RestauranteDAO daoRest = new RestauranteDAO();
 		Restaurante novoRest = new Restaurante("chicobem", "256364", "massas");
 		daoRest.inserirRestaurante(novoRest);
-		
-		PedidoDAO daoPedido = new PedidoDAO();
-		Pedido novoPedido = new Pedido(novoClient, novoRest, "jsiafja", "Em Preparo" );
-		daoPedido.inserirPedido(novoPedido);
-		
-		
-		ItemPedidoDAO dao = new ItemPedidoDAO();
-		
-		ItemPedido novo = new ItemPedido(novoPedido,null,3,23.45);
-
-		
-		dao.inserirItemPedido(novo);
 
 	}
 
