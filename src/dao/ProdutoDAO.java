@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.Produto;
 
 public class ProdutoDAO {
@@ -18,7 +17,7 @@ public class ProdutoDAO {
 			ptsm.setString(2, produto.getNome());
 			ptsm.setString(3, produto.getDescricao());
 			ptsm.setDouble(4, produto.getValor());
-			ptsm.setBoolean(3, produto.getDisponivel());
+			ptsm.setBoolean(5, produto.getDisponivel());
 			
 			ptsm.execute();
 			

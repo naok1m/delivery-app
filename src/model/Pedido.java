@@ -8,23 +8,23 @@ public class Pedido {
 	public Cliente Cliente;
 	public Restaurante Restaurante;
 	public String DataHora;
-	public String Stats;
+	public String Status;
 	private double valorTotal;
 	private List<ItemPedido> itens;
 	
 	
-	public Pedido(int id, Cliente cliente, Restaurante restaurante, String dataHora, String stats) {
+	public Pedido(int id, Cliente cliente, Restaurante restaurante, String dataHora, String status) {
 		this.ID = id;
 		this.Cliente = cliente;
 		this.Restaurante = restaurante;
 		this.DataHora = dataHora;
-		this.Stats = stats;
+		this.Status = status;
 	}
-	public Pedido(Cliente cliente, Restaurante restaurante, String dataHora, String stats, List<ItemPedido> itens) {
+	public Pedido(Cliente cliente, Restaurante restaurante, String dataHora, String status, List<ItemPedido> itens) {
 		this.Cliente = cliente;
 		this.Restaurante = restaurante;
 		this.DataHora = dataHora;
-		this.Stats = stats;
+		this.Status = status;
 		this.itens = itens;
 		calcularValorTotal();
 	}
@@ -67,11 +67,11 @@ public class Pedido {
 	public void setDataHora(String dataHora) {
 		this.DataHora = dataHora;
 	}
-	public String getStats() {
-		return Stats;
+	public String getStatus() {
+		return Status;
 	}
-	public void setStats(String stats) {
-		this.Stats = stats;
+	public void setStatus(String status) {
+		this.Status = status;
 	}
 	public double getValorTotal() {
         return valorTotal;
