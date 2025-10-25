@@ -33,7 +33,7 @@ public class RestauranteDAO {
 
 	// Buscar restaurante por ID
 	public Restaurante buscarPorId(int id) throws SQLException {
-		String sql = "SELECT * FROM Restaurante WHERE ID = ?";
+		String sql = "SELECT * FROM Restaurante WHERE ID_Restaurante = ?";
 		Restaurante restaurante = null;
 		try (Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement ptsm = conn.prepareStatement(sql)) {
@@ -62,10 +62,10 @@ public class RestauranteDAO {
 			ResultSet rs = ptsm.executeQuery();
 			while (rs.next()) {
 				Restaurante restaurante = new Restaurante(
-						rs.getInt("ID"),
+						rs.getInt("ID_Restaurante"),
 						rs.getString("Nome"),
 						rs.getString("Telefone"),
-						rs.getString("TipoCozinha"));
+						rs.getString("Tipo_cozinha"));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {
@@ -85,10 +85,10 @@ public class RestauranteDAO {
 			ResultSet rs = ptsm.executeQuery();
 			while (rs.next()) {
 				Restaurante restaurante = new Restaurante(
-						rs.getInt("ID"),
+						rs.getInt("ID_Restaurante"),
 						rs.getString("Nome"),
 						rs.getString("Telefone"),
-						rs.getString("TipoCozinha"));
+						rs.getString("Tipo_cozinha"));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {

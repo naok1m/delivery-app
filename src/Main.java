@@ -54,6 +54,7 @@ public class Main {
         Produto produto1 = new Produto(restaurante, "Pizza Margherita", "Pizza com molho de tomate e mussarela", 35.90, true);
         Produto produto2 = new Produto(restaurante, "Pizza Calabresa", "Pizza com calabresa e cebola", 42.50, true);
         
+        
         // 4. Criar itens do pedido
         System.out.println("\n4. Criando itens do pedido...");
         List<ItemPedido> itens = new ArrayList<>();
@@ -73,7 +74,7 @@ public class Main {
         System.out.println("Cliente: " + pedido.getCliente().getNome());
         System.out.println("Restaurante: " + pedido.getRestaurante().getNome());
         System.out.println("Data/Hora: " + pedido.getDataHora());
-        System.out.println("Status: " + pedido.getStatus());
+        System.out.println("Status: " + pedido.getStats());
         System.out.println("Valor Total: R$ " + String.format("%.2f", pedido.getValorTotal()));
 
         // 6. Atualizar status do pedido
@@ -86,7 +87,7 @@ public class Main {
         List<Pedido> pedidosCliente = pedidoService.listarPedidosPorCliente(cliente.getID());
         System.out.println("Pedidos do cliente " + cliente.getNome() + ":");
         for (Pedido p : pedidosCliente) {
-            System.out.println("- Pedido #" + p.getID() + " - " + p.getStatus() + " - R$ " + String.format("%.2f", p.getValorTotal()));
+            System.out.println("- Pedido #" + p.getID() + " - " + p.getStats() + " - R$ " + String.format("%.2f", p.getValorTotal()));
         }
 
         System.out.println("\n--- DEMONSTRAÇÃO CONCLUÍDA ---");

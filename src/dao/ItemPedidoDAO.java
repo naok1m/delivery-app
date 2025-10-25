@@ -9,14 +9,13 @@ import model.ItemPedido;
 public class ItemPedidoDAO {
 	
 	public void inserirItemPedido (ItemPedido itempedido) {
-		String sql =  "INSERT INTO ItemPedido (Pedido, descrição, quantidade, valor, produto) VALUES (?, ?, ?, ?, ?)";
+		String sql =  "INSERT INTO ItemPedido (Pedido, Descrição, Quantidade, Valor) VALUES (?, ?, ?, ?)";
 		try (Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement ptsm = conn.prepareStatement(sql)){
 			ptsm.setInt(1, itempedido.getPedido().getID());
 			ptsm.setString(2, itempedido.getDescrição());
 			ptsm.setInt(3, itempedido.getQuantidade());
 			ptsm.setDouble(4, itempedido.getValor());
-			ptsm.setInt(5, itempedido.getProduto().getID());
 
 			
 			ptsm.execute();

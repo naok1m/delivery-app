@@ -51,7 +51,7 @@ public class PedidoService {
         pedido.setCliente(cliente);
         pedido.setRestaurante(restaurante);
         pedido.setDataHora(getDataHoraAtual());
-        pedido.setStatus("PENDENTE");
+        pedido.setStats("PENDENTE");
         pedido.setItens(itens);
 
         // Calcular valor total
@@ -100,7 +100,7 @@ public class PedidoService {
             throw new IllegalArgumentException("Pedido não encontrado");
         }
 
-        pedido.setStatus(novoStatus);
+        pedido.setStats(novoStatus);
         pedidoDAO.atualizarStatus(idPedido, novoStatus);
     }
 

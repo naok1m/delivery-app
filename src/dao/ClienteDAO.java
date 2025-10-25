@@ -5,13 +5,12 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-
 import model.Cliente;
 
 public class ClienteDAO {
 	// CRIAR CLIENTE
 	public void inserirCliente (Cliente cliente) {
-		String sql =  "INSERT INTO cliente (nome, telefone, endereço) VALUES (?, ?, ?)";
+		String sql =  "INSERT INTO Cliente (Nome, Telefone, Endereço) VALUES (?, ?, ?)";
 		try (Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement ptsm = conn.prepareStatement(sql,Statement.RETURN_GENERATED_KEYS)){
 			ptsm.setString(1, cliente.getNome());
@@ -40,10 +39,10 @@ public class ClienteDAO {
 				ResultSet rs = ptsm.executeQuery();
 				if (rs.next()) {
 	                cliente = new Cliente(
-	                 rs.getInt("ID_CLiente"),
-	                 rs.getString("nome"),
-	                 rs.getString("telefone"),
-	                 rs.getString("endereço")
+	                 rs.getInt("ID_Cliente"),
+	                 rs.getString("Nome"),
+	                 rs.getString("Telefone"),
+	                 rs.getString("Endereço")
 	                );
 	            }
 

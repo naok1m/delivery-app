@@ -14,13 +14,13 @@ import model.Restaurante;
 public class PedidoDAO {
 
 	public void inserirPedido(Pedido pedido) {
-		String sql = "INSERT INTO Pedido (Cliente, Restaurante, datahora, Status) VALUES (?, ?, ?, ?)";
+		String sql = "INSERT INTO Pedido (Cliente, Restaurante, DataHora, Stats) VALUES (?, ?, ?, ?)";
 		try (Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement ptsm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 			ptsm.setInt(1, pedido.getCliente().getID());
 			ptsm.setInt(2, pedido.getRestaurante().getID());
 			ptsm.setString(3, pedido.getDataHora());
-			ptsm.setString(4, pedido.getStatus());
+			ptsm.setString(4, pedido.getStats());
 
 			ptsm.execute();
 
@@ -36,12 +36,12 @@ public class PedidoDAO {
 
 	// Buscar pedido por ID
 	public Pedido buscarPorId(int id) throws SQLException {
-		String sql = "SELECT p.*, c.nome as cliente_nome, c.telefone as cliente_telefone, c.endereço as cliente_endereco, "
+		String sql = "SELECT p.*, c.Nome as cliente_nome, c.Telefone as cliente_telefone, c.Endereço as cliente_endereco, "
 				+ "r.Nome as restaurante_nome, r.Telefone as restaurante_telefone, r.TipoCozinha "
 				+ "FROM Pedido p "
 				+ "JOIN Cliente c ON p.Cliente = c.ID_Cliente "
-				+ "JOIN Restaurante r ON p.Restaurante = r.ID "
-				+ "WHERE p.ID = ?";
+				+ "JOIN Restaurante r ON p.Restaurante = r.ID_Restaurante "
+				+ "WHERE p.ID_Pedido = ?";
 
 		Pedido pedido = null;
 		try (Connection conn = ConnectionFactory.getConnection();
@@ -65,11 +65,11 @@ public class PedidoDAO {
 
 				// Criar pedido
 				pedido = new Pedido(
-						rs.getInt("ID"),
+						rs.getInt("ID_Pedido"),
 						cliente,
 						restaurante,
-						rs.getString("datahora"),
-						rs.getString("Status"));
+						rs.getString("DataHora"),
+						rs.getString("Stats"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -80,12 +80,12 @@ public class PedidoDAO {
 
 	// Listar pedidos por cliente
 	public List<Pedido> listarPorCliente(int idCliente) throws SQLException {
-		String sql = "SELECT p.*, c.nome as cliente_nome, c.telefone as cliente_telefone, c.endereço as cliente_endereco, "
+		String sql = "SELECT p.*, c.Nome as cliente_nome, c.Telefone as cliente_telefone, c.Endereço as cliente_endereco, "
 				+ "r.Nome as restaurante_nome, r.Telefone as restaurante_telefone, r.TipoCozinha "
 				+ "FROM Pedido p "
 				+ "JOIN Cliente c ON p.Cliente = c.ID_Cliente "
-				+ "JOIN Restaurante r ON p.Restaurante = r.ID "
-				+ "WHERE p.Cliente = ? ORDER BY p.datahora DESC";
+				+ "JOIN Restaurante r ON p.Restaurante = r.ID_Restaurante "
+				+ "WHERE p.Cliente = ? ORDER BY p.DataHora DESC";
 
 		List<Pedido> pedidos = new ArrayList<>();
 		try (Connection conn = ConnectionFactory.getConnection();
@@ -109,11 +109,11 @@ public class PedidoDAO {
 
 				// Criar pedido
 				Pedido pedido = new Pedido(
-						rs.getInt("ID"),
+						rs.getInt("ID_Pedido"),
 						cliente,
 						restaurante,
-						rs.getString("datahora"),
-						rs.getString("Status"));
+						rs.getString("DataHora"),
+						rs.getString("Stats"));
 				pedidos.add(pedido);
 			}
 		} catch (SQLException e) {
@@ -125,7 +125,7 @@ public class PedidoDAO {
 
 	// Atualizar status do pedido
 	public void atualizarStatus(int idPedido, String novoStatus) throws SQLException {
-		String sql = "UPDATE Pedido SET Status = ? WHERE ID = ?";
+		String sql = "UPDATE Pedido SET Stats = ? WHERE ID_Pedido = ?";
 		try (Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement ptsm = conn.prepareStatement(sql)) {
 			ptsm.setString(1, novoStatus);
