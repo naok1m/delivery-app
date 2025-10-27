@@ -38,3 +38,13 @@ CREATE TABLE ItemPedido (
  Valor DECIMAL(10,2) NOT NULL,
  FOREIGN KEY (Pedido) REFERENCES Pedido(ID_Pedido) ON DELETE CASCADE  -- REFERENCIA A OUTRA KEY
 );
+
+USE Ifood;
+
+CREATE TABLE Produto (
+                         ID INT AUTO_INCREMENT PRIMARY KEY,
+                         Nome VARCHAR(100) NOT NULL,
+                         Valor DECIMAL(10, 2) NOT NULL,
+                         Restaurante INT NOT NULL,
+                         FOREIGN KEY (Restaurante) REFERENCES Restaurante(ID_Restaurante) ON DELETE CASCADE
+);

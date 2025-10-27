@@ -25,6 +25,12 @@ public class Produto {
 		this.Valor = valor;
 		this.Disponivel = disponivel;
 	}
+
+	public String toString() {
+		// Formata para: "Nome do Produto - R$ XX.XX"
+		return String.format("%s - R$ %.2f", getNome(), getValor() != null ? getValor() : 0.0);
+	}
+	public Produto() { }
 	
 	
 	public int getID() {

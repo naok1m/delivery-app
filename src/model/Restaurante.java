@@ -18,6 +18,14 @@ public Restaurante(String Nome, String Telefone, String TipoCozinha) {
 	this.Telefone = Telefone;
 	this.TipoCozinha = TipoCozinha;
 }
+	public Restaurante() { }
+
+// ... (resto do seu código)
+
+	@Override
+	public String toString() {
+		return this.Nome; // Apenas o nome é suficiente para a lista
+	}
 
 
 public int getID() {

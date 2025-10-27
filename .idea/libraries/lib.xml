@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="file://$PROJECT_DIR$/../openjfx-21.0.9_windows-x64_bin-sdk/javafx-sdk-21.0.9/lib" />
+      <root url="jar://$PROJECT_DIR$/src/lib/mysql-connector-j-9.4.0.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+    <jarDirectory url="file://$PROJECT_DIR$/../openjfx-21.0.9_windows-x64_bin-sdk/javafx-sdk-21.0.9/lib" recursive="false" />
+  </library>
+</component>

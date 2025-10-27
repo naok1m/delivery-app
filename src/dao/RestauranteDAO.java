@@ -65,7 +65,7 @@ public class RestauranteDAO {
 						rs.getInt("ID_Restaurante"),
 						rs.getString("Nome"),
 						rs.getString("Telefone"),
-						rs.getString("Tipo_cozinha"));
+						rs.getString("TipoCozinha"));
 				restaurantes.add(restaurante);
 			}
 		} catch (SQLException e) {

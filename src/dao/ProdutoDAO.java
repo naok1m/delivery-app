@@ -35,7 +35,7 @@ public class ProdutoDAO {
 				e.printStackTrace();
 			};
 		}
-	public List<Produto> listarPorRestaurante(int idRestaurante) {
+    public List<Produto> listarPorRestaurante(int idRestaurante) {
         String sql = "SELECT * FROM Produto WHERE Restaurante = ?";
         List<Produto> produtos = new ArrayList<>();
 
@@ -45,21 +45,28 @@ public class ProdutoDAO {
             ptsm.setInt(1, idRestaurante);
             ResultSet rs = ptsm.executeQuery();
 
+            // --- ESTA PARTE FOI CORRIGIDA ---
             while (rs.next()) {
-                Produto produto = new Produto(idRestaurante, null, sql, sql, null, false);
+                // 1. Cria um objeto Produto vazio
+                Produto produto = new Produto();
+
+                // 2. Preenche com os dados do banco
                 produto.setID(rs.getInt("ID_Produto"));
                 produto.setNome(rs.getString("Nome"));
                 produto.setDescricao(rs.getString("Descrição"));
                 produto.setValor(rs.getDouble("Valor"));
                 produto.setDisponivel(rs.getBoolean("Disponivel"));
 
-                // Só setando o restaurante com ID, se quiser o objeto completo você pode buscar pelo RestauranteDAO
-                Restaurante restaurante = new Restaurante(idRestaurante, sql, sql, sql);
+                // 3. Cria um objeto Restaurante simples (só com o ID)
+                Restaurante restaurante = new Restaurante();
                 restaurante.setID(rs.getInt("Restaurante"));
+
+                // 4. Associa o restaurante ao produto
                 produto.setRestaurante(restaurante);
 
                 produtos.add(produto);
             }
+            // --- FIM DA CORREÇÃO ---
 
         } catch (SQLException e) {
             e.printStackTrace();
