@@ -14,18 +14,20 @@
     <left>
         <VBox alignment="TOP_CENTER" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
-                <Label fx:id="restauranteNomeLabel" text="[Nome do Restaurante]">
-                    <font>
-                        <Font name="System Bold" size="18.0" />
-                    </font>
-                </Label>
+                <HBox alignment="CENTER_LEFT" spacing="10.0">
+                    <children>
+                        <Button fx:id="voltarButton" mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="&lt; Voltar" />
 
-                <Label text="Cardápio">
-                    <font>
-                        <Font name="System Bold" size="16.0" />
-                    </font>
-                </Label>
-                <ListView fx:id="menuListView" prefHeight="300.0" prefWidth="300.0" />
+                        <Label fx:id="restauranteNomeLabel" text="[Nome do Restaurante]">
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Label>
+                    </children>
+                    <VBox.margin>
+                        <Insets bottom="5.0" />
+                    </VBox.margin>
+                </HBox>                <ListView fx:id="menuListView" prefHeight="300.0" prefWidth="300.0" />
                 <Button mnemonicParsing="false" onAction="#adicionarAoCarrinho" text="Adicionar ao Carrinho" />
             </children>
             <padding>

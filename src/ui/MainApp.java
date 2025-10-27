@@ -130,8 +130,7 @@ public class MainApp extends Application {
 
             DeliveryUIController controller = loader.getController();
 
-            // AGORA SIM: Passa os 4 argumentos necessários
-            controller.initData(clienteLogado, restauranteSelecionado, produtoService, pedidoService);
+            controller.initData(this, clienteLogado, restauranteSelecionado, produtoService, pedidoService);
 
             primaryStage.setTitle("Cardápio - " + restauranteSelecionado.getNome());
             primaryStage.setScene(new Scene(root, 700, 450));

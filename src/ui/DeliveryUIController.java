@@ -22,15 +22,14 @@ import java.util.Optional;
 
 public class DeliveryUIController {
 
-    // --- VARIÁVEIS LIGADAS AO FXML ---
     @FXML private ListView<Produto> menuListView;
     @FXML private ListView<ItemPedido> carrinhoListView;
     @FXML private Label totalLabel;
 
-    // 10. REMOVEMOS o TextField e ADICIONAMOS o Label
     @FXML private Label restauranteNomeLabel;
 
     // --- DADOS E SERVIÇOS ---
+    private MainApp mainApp;
     private ProdutoService produtoService;
     private PedidoService pedidoService;
     private Cliente clienteLogado;
@@ -69,7 +68,8 @@ public class DeliveryUIController {
      * 12. MÉTODO initData() MODIFICADO
      * Agora recebe o objeto Restaurante
      */
-    public void initData(Cliente cliente, Restaurante restaurante, ProdutoService produtoService, PedidoService pedidoService) {
+    public void initData(MainApp mainApp, Cliente cliente, Restaurante restaurante, ProdutoService produtoService, PedidoService pedidoService) {
+        this.mainApp = mainApp;
         this.clienteLogado = cliente;
         this.restauranteAtual = restaurante; // Recebe o restaurante
         this.produtoService = produtoService;
@@ -221,5 +221,11 @@ public class DeliveryUIController {
         alert.setHeaderText(null);
         alert.setContentText(mensagem);
         alert.showAndWait();
+    }
+    @FXML
+    private void handleVoltarButtonAction() {
+        // Usa o mainApp para trocar de tela, passando o cliente
+        // para que a tela de restaurantes saiba quem é o usuário.
+        mainApp.mostrarTelaRestaurantes(clienteLogado);
     }
 }
