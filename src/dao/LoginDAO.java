@@ -47,7 +47,7 @@ public class LoginDAO {
             ResultSet rs = ptsm.executeQuery();
             if (rs.next()) {
                 login = new Login(
-                        rs.getInt("ID"),
+                        rs.getInt("ID_Login"),
                         rs.getString("Email"),
                         rs.getString("Senha"),
                         rs.getString("TipoUsuario"),
@@ -64,7 +64,7 @@ public class LoginDAO {
 
     // Buscar login por ID
     public Login buscarPorId(int id) {
-        String sql = "SELECT * FROM Login WHERE ID = ?";
+        String sql = "SELECT * FROM Login WHERE ID_Login = ?";
         Login login = null;
 
         try (Connection conn = ConnectionFactory.getConnection();
@@ -74,7 +74,7 @@ public class LoginDAO {
             ResultSet rs = ptsm.executeQuery();
             if (rs.next()) {
                 login = new Login(
-                        rs.getInt("ID"),
+                        rs.getInt("ID_Login"),
                         rs.getString("Email"),
                         rs.getString("Senha"),
                         rs.getString("TipoUsuario"),

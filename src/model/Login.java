@@ -22,9 +22,13 @@ public class Login {
 		this.TipoUsuario = tipousuario;
 		this.Referencia = referencia;
 	}
-	
-	
-	public int getID() {
+
+    public Login() {
+
+    }
+
+
+    public int getID() {
 		return ID;
 	}
 	public void setID(int id) {

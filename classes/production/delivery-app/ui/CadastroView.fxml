@@ -8,22 +8,36 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="450.0" prefWidth="350.0" spacing="10.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ui.CadastroController">
+<VBox alignment="CENTER" prefHeight="450.0" prefWidth="350.0" spacing="10.0"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="ui.CadastroController">
+
     <children>
         <Label text="Cadastro de Cliente">
             <font>
                 <Font name="System Bold" size="24.0" />
             </font>
         </Label>
+
         <TextField fx:id="nomeField" promptText="Nome Completo" />
         <TextField fx:id="enderecoField" promptText="Endereço (Rua, 123)" />
         <TextField fx:id="telefoneField" promptText="Telefone" />
         <TextField fx:id="emailField" promptText="Email (para login)" />
         <PasswordField fx:id="senhaField" promptText="Senha" />
         <Label fx:id="statusLabel" textFill="RED" />
-        <Button fx:id="cadastrarButton" defaultButton="true" mnemonicParsing="false" onAction="#handleCadastroButtonAction" text="Cadastrar" />
-        <Button mnemonicParsing="false" onAction="#handleVoltarButtonAction" text="Voltar para Login" style="-fx-background-color: transparent; -fx-text-fill: blue; -fx-underline: true;" />
+        <Button fx:id="cadastrarButton" defaultButton="true" mnemonicParsing="false"
+                onAction="#handleCadastroButtonAction" text="Cadastrar" />
+
+        <Button mnemonicParsing="false" onAction="#handleVoltarButtonAction"
+                text="Voltar para Login"
+                style="-fx-background-color: transparent; -fx-text-fill: blue; -fx-underline: true;" />
+
+        <!-- 🔽 Novo botão -->
+        <Button mnemonicParsing="false" onAction="#handleIrParaRestaurante"
+                text="Cadastrar Restaurante"
+                style="-fx-background-color: transparent; -fx-text-fill: darkgreen; -fx-underline: true;" />
     </children>
+
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>

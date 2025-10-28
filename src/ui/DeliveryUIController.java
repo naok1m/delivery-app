@@ -37,8 +37,8 @@ public class DeliveryUIController {
 
     // (A variável idRestauranteAtual não é mais necessária)
 
-    private ObservableList<Produto> menuItens = FXCollections.observableArrayList();
-    private ObservableList<ItemPedido> carrinhoItens = FXCollections.observableArrayList();
+    private final ObservableList<Produto> menuItens = FXCollections.observableArrayList();
+    private final ObservableList<ItemPedido> carrinhoItens = FXCollections.observableArrayList();
 
     /**
      * O initialize() continua o mesmo
@@ -112,7 +112,6 @@ public class DeliveryUIController {
             }
         } catch (Exception e) {
             exibirAlerta("Erro de Banco de Dados", "Não foi possível carregar o cardápio: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 
@@ -146,7 +145,6 @@ public class DeliveryUIController {
             }
         } catch (Exception e) {
             exibirAlerta("Erro Inesperado", "Ocorreu um erro: " + e.getMessage());
-            e.printStackTrace();
         }
     }
 

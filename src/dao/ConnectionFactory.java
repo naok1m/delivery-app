@@ -7,9 +7,9 @@ import java.sql.SQLException;
 public class ConnectionFactory {
 
     private static final String URL =
-        "jdbc:mysql://localhost:3306/ifood7?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
+        "jdbc:mysql://localhost:3306/ifood?useSSL=false&useTimezone=true&serverTimezone=UTC&allowPublicKeyRetrieval=true";
     private static final String USER = "root";
-    private static final String PASS = "root";
+    private static final String PASS = "12345";
 
     public static Connection getConnection() {
         try {

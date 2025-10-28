@@ -11,7 +11,7 @@ import model.Restaurante;
 
 public class RestauranteDAO {
 
-	public void inserirRestaurante(Restaurante restaurante) {
+	public void inserirRestaurante(Restaurante restaurante) throws SQLException {
 		String sql = "INSERT INTO Restaurante (Nome, Telefone, TipoCozinha) VALUES (?, ?, ?)";
 		try (Connection conn = ConnectionFactory.getConnection();
 				PreparedStatement ptsm = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
@@ -26,13 +26,14 @@ public class RestauranteDAO {
 				restaurante.setID(rs.getInt(1));
 			}
 
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // <<< RELANÇAR O ERRO
+        }
 	}
 
 	// Buscar restaurante por ID
-	public Restaurante buscarPorId(int id) throws SQLException {
+	public static Restaurante buscarPorId(int id) throws SQLException {
 		String sql = "SELECT * FROM Restaurante WHERE ID_Restaurante = ?";
 		Restaurante restaurante = null;
 		try (Connection conn = ConnectionFactory.getConnection();

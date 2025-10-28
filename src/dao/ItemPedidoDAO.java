@@ -8,7 +8,7 @@ import model.ItemPedido;
 
 public class ItemPedidoDAO {
 	
-	public void inserirItemPedido (ItemPedido itempedido) {
+	public void inserirItemPedido (ItemPedido itempedido) throws SQLException {
 		String sql =  "INSERT INTO ItemPedido (Pedido, Descrição, Quantidade, Valor) VALUES (?, ?, ?, ?)";
 		try (Connection conn = ConnectionFactory.getConnection();
 			PreparedStatement ptsm = conn.prepareStatement(sql)){
@@ -19,9 +19,9 @@ public class ItemPedidoDAO {
 
 			
 			ptsm.execute();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			};
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw e; // 🚨 2. Relançar a exceção para que o Service saiba!
+        }
 		}
 }

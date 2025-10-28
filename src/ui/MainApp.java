@@ -62,9 +62,7 @@ public class MainApp extends Application {
         mostrarTelaLogin(); // O app começa aqui
     }
 
-    /**
-     * 1. Mostra a Tela de Login (Método existente)
-     */
+
     public void mostrarTelaLogin() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/LoginView.fxml"));
@@ -79,9 +77,7 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * 2. Mostra a Tela de Cadastro (Método existente)
-     */
+
     public void mostrarTelaCadastro() {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/CadastroView.fxml"));
@@ -95,10 +91,7 @@ public class MainApp extends Application {
         }
     }
 
-    /**
-     * 3. Mostra a Tela de Restaurantes (NOVO MÉTODO)
-     * (Chamado pelo LoginController)
-     */
+
     public void mostrarTelaRestaurantes(Cliente clienteLogado) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/RestauranteView.fxml"));
@@ -118,11 +111,6 @@ public class MainApp extends Application {
     }
 
 
-    /**
-     * 4. Mostra a Tela Principal (MÉTODO MODIFICADO)
-     * (Chamado pelo RestauranteController)
-     * ESTE É O MÉTODO ONDE O SEU ERRO ESTAVA ACONTECENDO
-     */
     public void mostrarTelaPrincipal(Cliente clienteLogado, Restaurante restauranteSelecionado) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/DeliveryView.fxml"));
@@ -156,4 +144,76 @@ public class MainApp extends Application {
             e.printStackTrace();
         }
     }
+
+
+    public void mostrarCadastroCliente() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/CadastroCliente.fxml"));
+            Parent root = loader.load();
+            CadastroController controller = loader.getController();
+            controller.initData(this, clienteService); // injeta MainApp e serviço
+            primaryStage.setTitle("Cadastro de Cliente");
+            primaryStage.setScene(new Scene(root, 350, 450));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Em MainApp.java, dentro de mostrarCadastroRestaurante()
+
+    public void mostrarCadastroRestaurante() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/CadastroRestaurante.fxml"));
+            Parent root = loader.load();
+            CadastroRestauranteController controller = loader.getController();
+
+            // INJEÇÃO CORRETA:
+            controller.initData(this, restauranteService); // injeta MainApp E o RestauranteService!
+
+            primaryStage.setTitle("Cadastro de Restaurante");
+            primaryStage.setScene(new Scene(root, 350, 450));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    public void mostrarCadastroView() {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/CadastroView.fxml"));
+            Parent root = loader.load();
+            CadastroController controller = loader.getController();
+            controller.initData(this, clienteService);
+            primaryStage.setTitle("Cadastro");
+            primaryStage.setScene(new Scene(root, 350, 450));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // Em MainApp.java
+
+    public void mostrarTelaRestaurantePrincipal(Restaurante restauranteLogado) {
+        try {
+            // 1. Carrega o FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/ui/RestaurantePrincipalView.fxml"));
+            Parent root = loader.load();
+
+            // 2. Obtém o Controller e injeta dependências
+            RestaurantePrincipalController controller = loader.getController();
+
+            controller.initData(this, restauranteLogado, produtoService, pedidoService);
+
+            // 3. Define a nova Scene e exibe
+            primaryStage.setTitle("Gestão - " + restauranteLogado.getNome());
+            primaryStage.setScene(new Scene(root, 900, 600)); // Usando o tamanho maior para a tela de gestão
+            primaryStage.show();
+
+        } catch (IOException e) {
+            // ERRO CRÍTICO: Imprime o log completo para ver onde o FXML falhou.
+            System.err.println("ERRO FATAL: Falha ao carregar RestaurantePrincipalView.fxml ou dependências!");
+            e.printStackTrace();
+        }
+    }
+
 }

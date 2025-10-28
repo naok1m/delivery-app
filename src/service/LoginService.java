@@ -2,70 +2,57 @@ package service;
 
 import dao.LoginDAO;
 import dao.ClienteDAO; // Importante: Precisamos do ClienteDAO
+import dao.RestauranteDAO;
 import model.Cliente;
 import model.Login;
+
+import java.sql.SQLException;
 // (Não precisamos de SQLException aqui, pois seu DAO trata internamente)
 
 public class LoginService {
 
+    private final RestauranteDAO restauranteDAO;
     private LoginDAO loginDAO;
     private ClienteDAO clienteDAO;
 
-    /**
-     * Construtor: Inicializa os DAOs que este serviço usará.
-     */
+
     public LoginService() {
         this.loginDAO = new LoginDAO();
-        this.clienteDAO = new ClienteDAO(); // Instancia o ClienteDAO
+        this.clienteDAO = new ClienteDAO();
+        this.restauranteDAO = new RestauranteDAO();
     }
 
-    /**
-     * Este é o método que sua tela (LoginController) deve chamar.
-     * Ele autentica e retorna o Cliente completo.
-     *
-     * @param email O email digitado pelo usuário.
-     * @param senha A senha digitada pelo usuário.
-     * @return Um objeto Cliente se o login for válido e for um cliente,
-     * caso contrário, retorna null.
-     */
-    public Cliente autenticarCliente(String email, String senha) {
 
-        // 1. Validação básica (boa prática)
+    public Object autenticar(String email, String senha) {
+
         if (email == null || email.trim().isEmpty() || senha == null || senha.isEmpty()) {
             System.err.println("LoginService: Email ou senha vazios.");
             return null;
         }
 
-        // 2. Chama o seu LoginDAO.autenticar()
-        // Este método já trata a exceção SQL internamente.
         Login login = loginDAO.autenticar(email, senha);
 
-        // 3. Verifica se o login foi bem-sucedido
         if (login == null) {
-            System.err.println("LoginService: Autenticação falhou (email/senha errados).");
             return null; // Email ou senha errados
         }
 
-        // 4. Verifica se o tipo de usuário é "Cliente"
-        // (Seu modelo usa getTipoUsuario())
-        if ("Cliente".equalsIgnoreCase(login.getTipoUsuario())) {
+        int referenciaId = login.getReferencia();
 
-            // 5. Busca o Cliente usando o ID de Referência
-            // (Seu modelo usa getReferencia())
-            int clienteId = login.getReferencia();
+        try {
+            if ("Cliente".equalsIgnoreCase(login.getTipoUsuario())) {
+                return clienteDAO.buscarPorId(referenciaId);
 
-            // Assumindo que seu ClienteDAO tem o método buscarPorId()
-            Cliente cliente = clienteDAO.buscarPorId(clienteId);
+            } else if ("Restaurante".equalsIgnoreCase(login.getTipoUsuario())) {
+                // 🚨 CORREÇÃO: Chamar a instância que foi injetada no construtor
+                return restauranteDAO.buscarPorId(referenciaId);
 
-            if (cliente == null) {
-                System.err.println("LoginService: Login OK, mas Cliente (ID: " + clienteId + ") não encontrado.");
+            } else {
+                System.err.println("LoginService: Tipo de usuário ('" + login.getTipoUsuario() + "') desconhecido.");
+                return null;
             }
-
-            return cliente; // Retorna o objeto Cliente (ou null se não achou o ID)
-
-        } else {
-            // Login válido, mas não é um cliente (pode ser um Restaurante)
-            System.err.println("LoginService: Login válido, mas não é do tipo 'Cliente'.");
+        } catch (SQLException e) {
+            System.err.println("LoginService: Erro ao buscar dados do usuário (ID: " + referenciaId + "): " + e.getMessage());
+            e.printStackTrace();
             return null;
         }
     }
@@ -85,4 +72,6 @@ public class LoginService {
 
         loginDAO.inserirLogin(login);
     }
+
+
 }

@@ -51,7 +51,7 @@ public class PedidoService {
         pedido.setCliente(cliente);
         pedido.setRestaurante(restaurante);
         pedido.setDataHora(getDataHoraAtual());
-        pedido.setStats("PENDENTE");
+        pedido.setStats("Em Preparo");
         pedido.setItens(itens);
 
         // Calcular valor total
@@ -133,5 +133,22 @@ public class PedidoService {
         LocalDateTime agora = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return agora.format(formatter);
+    }
+
+    // Em service.PedidoService (Adicionar)
+
+    public List<Pedido> listarPedidosPorRestaurante(int idRestaurante) throws SQLException {
+        if (idRestaurante <= 0) {
+            throw new IllegalArgumentException("ID do restaurante deve ser maior que zero");
+        }
+        return pedidoDAO.listarPorRestaurante(idRestaurante);
+    }
+
+    public List<Pedido> listarPedidosEmAndamentoPorRestaurante(int idRestaurante) throws SQLException {
+        if (idRestaurante <= 0) {
+            throw new IllegalArgumentException("ID do restaurante deve ser maior que zero");
+        }
+        // O DAO deve implementar a lógica de status (ex: WHERE stats IN ('ACEITO', 'PREPARANDO', ...))
+        return pedidoDAO.listarEmAndamentoPorRestaurante(idRestaurante);
     }
 }

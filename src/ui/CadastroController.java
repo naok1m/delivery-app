@@ -1,10 +1,13 @@
 package ui;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import service.ClienteService; // O service que acabamos de preencher
 
 public class CadastroController {
@@ -74,4 +77,14 @@ public class CadastroController {
         alert.setContentText(mensagem);
         alert.showAndWait();
     }
+
+    @FXML
+    private void handleIrParaRestaurante() {
+        // Apenas pede para a MainApp trocar a tela
+        if (mainApp != null) {
+            mainApp.mostrarCadastroRestaurante(); // Chama o método da MainApp
+        }
+    }
+
+
 }

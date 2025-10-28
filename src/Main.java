@@ -46,7 +46,6 @@ public class Main {
         // 2. Cadastrar restaurante
         System.out.println("\n2. Cadastrando restaurante...");
         Restaurante restaurante = new Restaurante("Pizzaria do João", "(11) 3333-3333", "Pizza");
-        restauranteService.cadastrarRestaurante(restaurante);
         System.out.println("Restaurante cadastrado: " + restaurante.getNome());
 
         // 3. Criar produtos
